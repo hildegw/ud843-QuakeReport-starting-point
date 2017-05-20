@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class EarthquakeActivity extends AppCompatActivity {
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;  //todo ???
+    private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -44,9 +44,15 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         // Create a fake list of earthquake locations.
         ArrayList<EarthQuakeEntry> eqDataset = new ArrayList<>();
-        eqDataset.add(new EarthQuakeEntry(5.5, "San Francisco", "heute"));       //todo remove
-        eqDataset.add(new EarthQuakeEntry(4.4, "London", "28.2.2017"));
-        eqDataset.add(new EarthQuakeEntry(3.3, "Tokyo", "14.12.2016"));
+        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));       //todo remove
+        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
+        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
+        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
+        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
+        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));       //todo remove
+        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
+        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
+        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));
 
         // specify an adapter (see also next example)
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, eqDataset);

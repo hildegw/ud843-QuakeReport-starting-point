@@ -55,7 +55,6 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
         vh.magnitudeView = (TextView)view.findViewById(R.id.eq_mag);
         vh.locationView = (TextView)view.findViewById(R.id.eq_location);
         vh.timeView = (TextView)view.findViewById(R.id.eq_time);
-        //view.setTag(vh);                                                    //todo: needed??? if-else with getTag(vh)?
         return vh;
     }
 

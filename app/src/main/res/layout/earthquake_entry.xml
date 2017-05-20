@@ -10,21 +10,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:padding="@dimen/margin"
         android:id="@+id/eq_mag"
-        tools:text="5.5"/>
+        tools:text="6.1"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/textbox"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:id="@+id/eq_location"
-        tools:text="San Francisco"/>
+        tools:text="94 km SSE of Taron, Papua New Guinea"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/textbox"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:id="@+id/eq_time"
-        tools:text="Feb 30, 2017"/>
+        tools:text="Mon, 25 Jan 2016 04:22 GMT"/>
 
 </LinearLayout>
