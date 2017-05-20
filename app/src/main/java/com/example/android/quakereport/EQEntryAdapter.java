@@ -3,7 +3,6 @@ package com.example.android.quakereport;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,15 +46,16 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
     // Create new views (invoked by the layout manager)
     @Override
     public EQEntryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        View view = mInflator.inflate(R.layout.earthquake_entry, parent, false);         //todo: check view casting
+        // create a new view (equals convertView)
+        View view = mInflator.inflate(R.layout.earthquake_entry, parent, false);
         //todo: set the view's size, margins, paddings and layout parameters
 
+        //create ViewHolder instance and find its views
         ViewHolder vh = new ViewHolder(view);
         vh.magnitudeView = (TextView)view.findViewById(R.id.eq_mag);
         vh.locationView = (TextView)view.findViewById(R.id.eq_location);
         vh.timeView = (TextView)view.findViewById(R.id.eq_time);
-        view.setTag(vh);
+        //view.setTag(vh);                                                    //todo: needed??? if-else with getTag(vh)?
         return vh;
     }
 
@@ -72,7 +72,7 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        Log.i("item count ", String.valueOf(mEqDataset.size()));
+        //Log.i("item count ", String.valueOf(mEqDataset.size()));
         return mEqDataset.size();
     }
 }

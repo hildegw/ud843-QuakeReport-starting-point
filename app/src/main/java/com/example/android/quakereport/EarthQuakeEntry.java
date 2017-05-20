@@ -27,9 +27,4 @@ public class EarthQuakeEntry {
     public String getTime() {
         return mTime;
     }
-
-
-    //public void addEvent(Double magnitude, String location, String tim){
-
-
 }
