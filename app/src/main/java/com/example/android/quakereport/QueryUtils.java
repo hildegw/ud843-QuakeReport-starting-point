@@ -46,9 +46,17 @@ public final class QueryUtils {
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
-
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
+            JSONObject jsonEQRoot = new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONArray jsonEQFeatureArray = jsonEQRoot.getJSONArray("features");
+            // looping through all Feature entries
+            for (int i = 0; i < jsonEQFeatureArray.length(); i++) {
+                JSONObject jsonEQfeature = jsonEQFeatureArray.getJSONObject(i);
+                JSONObject jsonEQproperties = jsonEQfeature.getJSONObject("properties");
+                Double mag = jsonEQproperties.getDouble("mag");
+                String place = jsonEQproperties.getString("place");
+                String time = jsonEQproperties.getString("time");
+                earthquakes.add(new EarthQuakeEntry(mag, place, time));
+            }
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,

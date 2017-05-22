@@ -42,7 +42,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // Create a fake list of earthquake locations.
+        /*/ Create a fake list of earthquake locations.
         ArrayList<EarthQuakeEntry> eqDataset = new ArrayList<>();
         eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));       //todo remove
         eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
@@ -53,8 +53,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
         eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
         eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));
+        */
+        //extract earthquakes from QueryUtils class
+        ArrayList<EarthQuakeEntry> eqDataset = QueryUtils.extractEarthquakes();
 
-        // specify an adapter (see also next example)
+        // specify an adapter
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, eqDataset);
 
         mRecyclerView.setAdapter(eqEntryAdapter);
