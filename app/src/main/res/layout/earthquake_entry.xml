@@ -4,28 +4,55 @@
     android:id="@+id/entry"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:id="@+id/eq_mag"
+        android:background="@drawable/mag_circle"
+        android:layout_marginLeft="16dp"
         tools:text="6.1"/>
 
-    <TextView
-        android:layout_width="@dimen/textbox"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_weight="1"
-        android:id="@+id/eq_location"
-        tools:text="94 km SSE of Taron, Papua New Guinea"/>
+        android:layout_margin="@dimen/margin">
 
-    <TextView
-        android:layout_width="@dimen/textbox"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eq_near_to"
+            tools:text="227 km SSE of Charagua"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eq_location"
+            tools:text="Papua New Guinea"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/eq_time"
-        tools:text="Mon, 25 Jan 2016 04:22 GMT"/>
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eq_date"
+            tools:text="25.01.2017"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eq_time"
+            tools:text="04:22"/>
+    </LinearLayout>
 
 </LinearLayout>

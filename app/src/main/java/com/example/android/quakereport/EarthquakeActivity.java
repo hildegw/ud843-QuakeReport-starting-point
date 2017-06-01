@@ -15,6 +15,7 @@
  */
 package com.example.android.quakereport;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ public class EarthquakeActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
     private RecyclerView.LayoutManager mLayoutManager;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,24 +44,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        /*/ Create a fake list of earthquake locations.
-        ArrayList<EarthQuakeEntry> eqDataset = new ArrayList<>();
-        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));       //todo remove
-        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
-        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
-        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
-        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
-        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));       //todo remove
-        eqDataset.add(new EarthQuakeEntry(6.1, "94 km SSE of Taron, Papua New Guinea", "Mon, 25 Jan 2016 04:22 GMT"));
-        eqDataset.add(new EarthQuakeEntry(6.3, "50 km NNE of Al Hoceima, Morocco", "Tue, 26 Jan 2016 03:10 GMT"));
-        eqDataset.add(new EarthQuakeEntry(7.2, "88 km N of Yelizovo, Russia", "Sat, 30 Jan 2016 03:25 GMT"));
-        */
         //extract earthquakes from QueryUtils class
-        ArrayList<EarthQuakeEntry> eqDataset = QueryUtils.extractEarthquakes();
+        ArrayList<EarthQuakeEntry> eqDataset = QueryUtils.extractEarthquakes(this);
 
         // specify an adapter
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, eqDataset);
-
         mRecyclerView.setAdapter(eqEntryAdapter);
     }
 
