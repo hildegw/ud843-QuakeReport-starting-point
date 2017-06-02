@@ -54,16 +54,28 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
     public EQEntryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view (equals convertView)
         View view = mInflator.inflate(R.layout.earthquake_entry, parent, false);
-        //todo: set the view's size, margins, paddings and layout parameters
 
         //create ViewHolder instance and find its views
-        ViewHolder vh = new ViewHolder(view);
+        final ViewHolder vh = new ViewHolder(view);
         vh.magnitudeView = (TextView)view.findViewById(R.id.eq_mag);
         vh.magnitudeCircle = (GradientDrawable) vh.magnitudeView.getBackground();  // Fetch the background from the TextView, which is a GradientDrawable.
         vh.locationView = (TextView)view.findViewById(R.id.eq_location);
         vh.nearToView = (TextView)view.findViewById(R.id.eq_near_to);
         vh.dateView = (TextView)view.findViewById(R.id.eq_date);
         vh.timeView = (TextView)view.findViewById(R.id.eq_time);
+
+        //add click listener for each enetry
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                int position = vh.getAdapterPosition();
+                final EarthQuakeEntry currentEntry = mEqDataset.get(position);
+                String urlForEarthquake = currentEntry.getUrlForEarthQuake();
+                Intent goToUSGSWebSite = new Intent(Intent.ACTION_VIEW);
+                goToUSGSWebSite.setData(Uri.parse(urlForEarthquake));
+                mContext.startActivity(goToUSGSWebSite);
+            }
+        });
         return vh;
     }
 
@@ -78,16 +90,7 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
         holder.locationView.setText(currentEntry.getLocation());
         holder.dateView.setText(currentEntry.getDate());
         holder.timeView.setText(currentEntry.getTime());
-        //add click listener to onBind, needs override, because no click listener exists for RecyclerView
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                String urlForEarthquake = currentEntry.getUrlForEarthQuake();
-                Intent goToUSGSWebSite = new Intent(Intent.ACTION_VIEW);
-                goToUSGSWebSite.setData(Uri.parse(urlForEarthquake));
-                mContext.startActivity(goToUSGSWebSite);
-            }
-        });
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
