@@ -17,13 +17,15 @@ public class EarthQuakeEntry {
     private String mPlace;
     private Date mDateEpoch;
     private Context mContext;
+    private String mUrlForEarthQuake;
     private static final String LOCATION_SEPARATOR = " of ";
 
-    public EarthQuakeEntry(Context context, Double mag, String place, Date dateEpoch){
+    public EarthQuakeEntry(Context context, Double mag, String place, Date dateEpoch, String urlForEarthQuake){
         mContext = context;
         mMag = mag;
         mPlace = place;
         mDateEpoch = dateEpoch;
+        mUrlForEarthQuake = urlForEarthQuake;
     }
 
     public String getMagnitude() {
@@ -68,7 +70,6 @@ public class EarthQuakeEntry {
                 break;
             default:
                 magnitudeColor = mContext.getColor(R.color.magnitude10plus);
-
         }
         return magnitudeColor;
     }
@@ -106,5 +107,9 @@ public class EarthQuakeEntry {
     public String getTime() {
         String time = new SimpleDateFormat("hh:mm").format(mDateEpoch);
         return time;
+    }
+
+    public String getUrlForEarthQuake() {
+        return mUrlForEarthQuake;
     }
 }

@@ -2,7 +2,9 @@ package com.example.android.quakereport;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,8 +78,16 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
         holder.locationView.setText(currentEntry.getLocation());
         holder.dateView.setText(currentEntry.getDate());
         holder.timeView.setText(currentEntry.getTime());
-
-
+        //add click listener to onBind, needs override, because no click listener exists for RecyclerView
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                String urlForEarthquake = currentEntry.getUrlForEarthQuake();
+                Intent goToUSGSWebSite = new Intent(Intent.ACTION_VIEW);
+                goToUSGSWebSite.setData(Uri.parse(urlForEarthquake));
+                mContext.startActivity(goToUSGSWebSite);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

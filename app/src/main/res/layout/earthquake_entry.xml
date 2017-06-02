@@ -30,12 +30,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eq_near_to"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textSize="12sp"
             tools:text="227 km SSE of Charagua"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eq_location"
-            tools:text="Papua New Guinea"/>
+            android:textColor="@color/textColorEarthquakeLocation"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="16sp"
+            tools:text="Papua New Guinea this is a long text size to see what happens"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,11 +56,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eq_date"
+            android:layout_gravity="end"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp"
             tools:text="25.01.2017"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eq_time"
+            android:layout_gravity="end"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp"
             tools:text="04:22"/>
     </LinearLayout>
 

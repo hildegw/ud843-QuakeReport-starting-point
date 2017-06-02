@@ -57,10 +57,11 @@ public final class QueryUtils {
                 Double mag = jsonEQproperties.getDouble("mag");
                 String place = jsonEQproperties.getString("place");
                 String time = jsonEQproperties.getString("time");
+                String urlForEarthquake = jsonEQproperties.getString("url");
                 //convert epoch time into date format
                 Date dateEpoch = new Date(Long.parseLong(time));
                 //add each earthquake event to data set
-                earthquakes.add(new EarthQuakeEntry(context, mag, place, dateEpoch));
+                earthquakes.add(new EarthQuakeEntry(context, mag, place, dateEpoch, urlForEarthquake));
             }
 
         } catch (JSONException e) {
