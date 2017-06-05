@@ -15,10 +15,9 @@
  */
 package com.example.android.quakereport;
 
+import android.app.LoaderManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +26,6 @@ import java.util.ArrayList;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<EarthQuakeEntry>> {
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
-    //todo: check correckt HTTP GET String to fetch data from USGS
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
     private RecyclerView.LayoutManager mLayoutManager;
@@ -38,9 +35,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
-
         //start Background task via Loader
-        getSupportLoaderManager().initLoader(1, null, this).forceLoad();
+        LoaderManager loaderManager = getLoaderManager();
+        loaderManager.initLoader(1, null, this);
 
         //start Recycler
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_entries);
@@ -55,12 +52,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     //Loader starts fetching data when created
     @Override
-    public Loader<ArrayList<EarthQuakeEntry>> onCreateLoader(int id, Bundle args) {
+    public android.content.Loader<ArrayList<EarthQuakeEntry>> onCreateLoader(int id, Bundle args) {
         return new FetchEQDataLoader(EarthquakeActivity.this, this);
     }
+
     //UI is being populated with EQ events
     @Override
-    public void onLoadFinished(Loader<ArrayList<EarthQuakeEntry>> loader, ArrayList<EarthQuakeEntry> events) {
+    public void onLoadFinished(android.content.Loader<ArrayList<EarthQuakeEntry>> loader, ArrayList<EarthQuakeEntry> events) {
         if (events == null) {
             return;
         }
@@ -70,7 +68,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public void onLoaderReset(Loader<ArrayList<EarthQuakeEntry>> loader) {
+    public void onLoaderReset(android.content.Loader<ArrayList<EarthQuakeEntry>> loader) {
         // start with no data whe Activity is killed
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, null); //todo: better way to clear adapter?
         mRecyclerView.setAdapter(eqEntryAdapter);
