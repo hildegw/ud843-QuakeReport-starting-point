@@ -17,6 +17,11 @@ public class FetchEQDataLoader extends AsyncTaskLoader<ArrayList<EarthQuakeEntry
     }
 
     @Override
+    protected void onStartLoading() {
+        forceLoad();
+    }
+
+    @Override
     public ArrayList<EarthQuakeEntry> loadInBackground() {
         ArrayList<EarthQuakeEntry> events = QueryUtils.fetchEarthquakeData(mAContext);
         return events;

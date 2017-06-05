@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             return;
         }
         // specify an adapter
+        Log.i("onLoadFinished", "done");
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, events);
         mRecyclerView.setAdapter(eqEntryAdapter);
     }
