@@ -23,6 +23,10 @@ import java.util.Date;
  */
 public final class QueryUtils {
 
+    private static final String USGS_REQUEST_URL =
+            //"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2017-06-01&endtime=2017-06-03&minmagnitude=4";
+            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4&limit=20000";
+
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
@@ -79,10 +83,13 @@ public final class QueryUtils {
     /**
      * Query the USGS dataset and return an {@link EarthQuakeEntry} object to represent a single earthquake.
      */
-    public static ArrayList<EarthQuakeEntry> fetchEarthquakeData(Activity context, String requestUrl) {
+    public static ArrayList<EarthQuakeEntry> fetchEarthquakeData(Activity context) {
         // Create URL object
-        URL url = createUrl(requestUrl);
-
+        URL url = createUrl(USGS_REQUEST_URL);
+        if (url == null) {
+            Log.e("url == null", "error!!!");
+            return null;
+        }
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
