@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
     private RecyclerView.LayoutManager mLayoutManager;
     private Context mContext;
+    private TextView mEmptyStateTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         Log.i("onLoadFinished", "done");
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, events);
         mRecyclerView.setAdapter(eqEntryAdapter);
+        //in case there is no data to display, set TextView from earthquake_activity.xml
+        mEmptyStateTextView = (TextView) findViewById(R.id.no_data);
+        mEmptyStateTextView.setText(R.string.no_data_found);
     }
 
     @Override

@@ -27,13 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <!-- Text View for empty data state -->
+    <!-- Text View for empty data state, will only show if Recycler has no data -->
     <TextView
         android:id="@+id/no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin"
-        android:text="@string/no_data_found"/>
+        android:text=""/>
 
 </LinearLayout>
