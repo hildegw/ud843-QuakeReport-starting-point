@@ -54,6 +54,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     //Loader starts fetching data when created
     @Override
     public android.content.Loader<ArrayList<EarthQuakeEntry>> onCreateLoader(int id, Bundle args) {
+        Log.i("onCreateLoader", "done");
         return new FetchEQDataLoader(EarthquakeActivity.this, this);
     }
 
@@ -72,6 +73,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public void onLoaderReset(android.content.Loader<ArrayList<EarthQuakeEntry>> loader) {
         // start with no data whe Activity is killed
+        Log.i("onLoadReset", "done");
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, null); //todo: better way to clear adapter?
         mRecyclerView.setAdapter(eqEntryAdapter);
     }

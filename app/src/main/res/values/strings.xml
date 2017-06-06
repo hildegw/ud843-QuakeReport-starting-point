@@ -16,4 +16,6 @@
 <resources>
     <string name="app_name">Quake Report</string>
     <string name="near">near</string>
+    <string name="no_data_found">no data found</string>
+
 </resources>

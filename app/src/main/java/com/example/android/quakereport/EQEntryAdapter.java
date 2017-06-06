@@ -27,7 +27,7 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
     //ViewHolder class with constructor
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public View mView;
+        private View mView;
         private TextView magnitudeView;
         private GradientDrawable magnitudeCircle;
         private TextView locationView;
@@ -43,9 +43,8 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
 
     // Constructor based on each earth quake entry
     public EQEntryAdapter(Activity context, ArrayList<EarthQuakeEntry> eqDataset) {
-        //super(context, 0, eqDataset);         //todo ?? calling super/ArrayAdapter-constructor
         mContext = context;
-        mInflator = LayoutInflater.from(context); //todo: ???
+        mInflator = LayoutInflater.from(context);
         mEqDataset = eqDataset;
     }
 
@@ -96,7 +95,6 @@ public class EQEntryAdapter extends RecyclerView.Adapter<EQEntryAdapter.ViewHold
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        //Log.i("item count ", String.valueOf(mEqDataset.size()));
         return mEqDataset.size();
     }
 }
