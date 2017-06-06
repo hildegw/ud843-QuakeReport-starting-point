@@ -44,6 +44,13 @@ public final class QueryUtils {
      */
     public static ArrayList<EarthQuakeEntry> extractEarthquakes(Activity context, String earthquakeJSON) {
 
+        /*/todo-remove: slow down loading for testing
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<EarthQuakeEntry> earthquakes = new ArrayList<>();
 

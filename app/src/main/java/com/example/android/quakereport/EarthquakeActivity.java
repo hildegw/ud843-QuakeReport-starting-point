@@ -17,11 +17,15 @@ package com.example.android.quakereport;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,9 +43,23 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
-        //start Background task via Loader
-        LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(1, null, this);
+        //check for Internet connection
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        //if no connection - hide loader and set TextView to "no connection"
+        if (isConnected) {
+            //start Background task via Loader
+            LoaderManager loaderManager = getLoaderManager();
+            loaderManager.initLoader(1, null, this);
+        } else {
+            Log.i("no Internet", "nonono");
+            ProgressBar pg = (ProgressBar) findViewById(R.id.loading);
+            pg.setVisibility(View.GONE);
+            mEmptyStateTextView = (TextView) findViewById(R.id.no_data);
+            mEmptyStateTextView.setText(R.string.no_Internet);
+        }
+
 
         //start Recycler
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_entries);
@@ -67,6 +85,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         if (events == null) {
             return;
         }
+        //hide loading bar
+        ProgressBar pg = (ProgressBar) findViewById(R.id.loading);
+        pg.setVisibility(View.GONE);
         // specify an adapter
         Log.i("onLoadFinished", "done");
         EQEntryAdapter eqEntryAdapter = new EQEntryAdapter(this, events);
