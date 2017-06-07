@@ -17,6 +17,7 @@ package com.example.android.quakereport;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -60,7 +63,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             mEmptyStateTextView.setText(R.string.no_Internet);
         }
 
-
         //start Recycler
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_entries);
         // use this setting to improve performance if you know that changes
@@ -69,6 +71,25 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+    } //end of onCreate
+
+
+    //Adding Options Menu item
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
