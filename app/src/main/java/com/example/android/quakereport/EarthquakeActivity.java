@@ -56,7 +56,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(1, null, this);
         } else {
-            Log.i("no Internet", "nonono");
             ProgressBar pg = (ProgressBar) findViewById(R.id.loading);
             pg.setVisibility(View.GONE);
             mEmptyStateTextView = (TextView) findViewById(R.id.no_data);

@@ -1,6 +1,9 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -25,7 +28,9 @@ public final class QueryUtils {
 
     private static final String USGS_REQUEST_URL =
             //"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2017-06-01&endtime=2017-06-03&minmagnitude=4";
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4&limit=20";
+            //"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4&limit=20";
+            "https://earthquake.usgs.gov/fdsnws/event/1/query";
+
 
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
@@ -91,8 +96,25 @@ public final class QueryUtils {
      * Query the USGS dataset and return an {@link EarthQuakeEntry} object to represent a single earthquake.
      */
     public static ArrayList<EarthQuakeEntry> fetchEarthquakeData(Activity context) {
+        //Use minMag from user preference menu
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String minMagnitude = sharedPrefs.getString(
+                context.getString(R.string.settings_min_magnitude_key),
+                context.getString(R.string.settings_min_magnitude_default));
+        String orderBy = sharedPrefs.getString(
+                context.getString(R.string.settings_order_by_key),
+                context.getString(R.string.settings_order_by_default));
+
         // Create URL object
-        URL url = createUrl(USGS_REQUEST_URL);
+        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "40");
+        uriBuilder.appendQueryParameter("minmag", minMagnitude);
+        uriBuilder.appendQueryParameter("orderby", orderBy);
+
+        URL url = createUrl(uriBuilder.toString());
         if (url == null) {
             Log.e("url == null", "error!!!");
             return null;
